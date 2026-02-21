@@ -1,0 +1,22 @@
+---
+description: Python env loading and library best practices
+globs: **/*.py
+alwaysApply: false
+---
+
+# Python Environment & Library Best Practices
+
+## Loading .env
+
+Use `find_dotenv()` instead of manual path logic. It searches upward from the script's directory.
+
+```python
+# ✅ One-liner - no path manipulation
+from dotenv import load_dotenv, find_dotenv; load_dotenv(find_dotenv())
+```
+
+Load env **before** creating clients that read from environment (e.g. OpenAI).
+
+## General Principle
+
+Before adding custom logic, check the library's API for built-in solutions.
